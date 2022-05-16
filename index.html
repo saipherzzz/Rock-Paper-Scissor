@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Камень-ножницы-бумага</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="body">
+    <!--
+        Камень - серый
+        Ножницы - оранжевые
+        Бумага - белая
+    -->
+    <div class="col-8 mx-auto text-center mt-5">
+        <h1 class="info">Игрок 1 ходит!</h1>
+        <div class="row  py-5">
+            <div class="col-6 bg-success py-5">
+                <h1>Игрок 1</h1>
+                <div class="choice-player-1">
+
+                </div>
+                <p>Камень (серый) - D</p>
+                <p>Ножницы (оранжевый)- W</p>
+                <p>Бумага (белый)- A</p>
+            </div>
+            <div class="col-6 bg-info py-5">
+                <h1>Игрок 2</h1>
+                <div class="choice-player-2">
+                </div>
+                <p>Камень (серый)- K</p>
+                <p>Ножницы (оранжевый)- J</p>
+                <p>Бумага (белый)- L</p>
+            </div>
+        </div>
+    </div>
+    
+<script type="text/javascript">
+    let chooseplayer = 1;
+    let player1 = null;
+    let player2 = null;
+    let txtswitch = document.querySelector(".txtswitch")
+    let p1 = document.querySelector(".choice-player-1")
+    let p2 = document.querySelector(".choice-player-2")
+
+
+    document.addEventListener("keydown", function (event) {
+        //  console.log(event.code)
+
+        if(chooseplayer==1){
+            if(event.code=="KeyW"){// W = Ножницы 
+                console.log("1")
+                chooseplayer = 2;
+                player1 = "ножницы"
+            }else if(event.code=="KeyA"){// A = Бумага
+                console.log("1")
+                chooseplayer = 2;
+                player1 = "бумага"
+            }else if(event.code=="KeyD"){// D = Камень
+                console.log("1")
+                chooseplayer = 2;
+                player1 = "камень"
+            }else{
+                console.log("Ошибка")
+            }
+        }else if(chooseplayer==2){
+            if(event.code=="KeyK"){// K = Камень
+                console.log("2")
+                chooseplayer = 0;
+                player2 = "камень"
+            }else if(event.code=="KeyL"){// L = Бумага
+                console.log("2")
+                chooseplayer = 0;
+                player1 = "бумага"
+            }else if(event.code=="KeyJ"){// J = Ножницы
+                console.log("2")
+                chooseplayer = 0;
+                player1 = "ножницы"
+            }else{
+                console.log("Неправильна")
+            }
+        }
+        
+        if(chooseplayer==0){
+            console.log("проверка")
+            setTimeout(checkans,1000)
+            setTimeout(colorschoose,500)
+            chooseplayer = 1
+        }
+    })
+    let colorschoose = function(){
+        if(player1=="ножницы"){
+            p1.style.backgroundColor = "orange"
+        }else if(player1=="бумага"){
+            p1.style.backgroundColor = "white"
+        }else if(player1=="камень"){
+            p1.style.backgroundColor = "gray"
+        }
+        if(player2=="ножницы"){
+            p2.style.backgroundColor = "orange"
+        }else if(player2=="бумага"){
+            p2.style.backgroundColor = "white"
+        }else if(player2=="камень"){
+            p2.style.backgroundColor = "gray"
+        }
+    }
+    let checkans = function(){
+        if(player1 == player2){
+            alert("Ничья")
+        }else if(player1 == "камень" && player2 == "ножницы"){
+            alert("Первый игрок побеждает над второго игрока")
+        }else if(player1 == "бумага" && player2 == "камень"){
+            alert("Первый игрок побеждает над второго игрока")
+        }else if(player1 == "ножницы" && player2 == "бумага"){
+            alert("Первый игрок побеждает над второго игрока")
+        }else{
+            alert("Второй игрок побеждает над первого игрока")
+        }
+    }
+</script>   
+</body>
+</html>
